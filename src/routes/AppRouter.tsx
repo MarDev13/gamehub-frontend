@@ -5,11 +5,13 @@ import Dashboard from "../admin/pages/Dashboard";
 import { ProtectedRoute } from "../auth/components/ProtectedRoute";
 import { UserLayout } from "../user/layout/UserLayout";
 import { Profile } from "../user/pages/Profile";
+import { RegisterPage } from "../auth/pages/Register";
 
 export default function AppRouter() {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
             <Route element={<ProtectedRoute requiredRole="ADMIN" />}>
                 <Route path="/admin" element={<AdminLayout />}>

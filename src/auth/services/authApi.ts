@@ -9,4 +9,17 @@ export const loginRequest = async (
     method: 'POST',
     body: JSON.stringify({ email, password }),
   })
+
+}
+export const registerRequest = async (data: {
+  email: string
+  password: string
+  userName: string
+  firstName: string
+  lastName: string
+}) => {
+  return apiFetch("/auth/register", {
+    method: "POST",
+    body: JSON.stringify(data),
+  })
 }
