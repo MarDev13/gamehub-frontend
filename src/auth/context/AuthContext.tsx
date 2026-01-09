@@ -2,28 +2,26 @@ import { createContext, useEffect, useState, ReactNode } from "react"
 import { getToken, saveToken, removeToken } from "../services/authStorage"
 import { jwtDecode } from "jwt-decode"
 
-/* Props del provider */
 type AuthProviderProps = {
   children: ReactNode
 }
 
-/* Payload del JWT */
 type JwtPayload = {
   email: string
   role: "ADMIN" | "USER"
 }
 
-/* Lo que expone el contexto */
+
 export type AuthContextType = {
   token: string | null
   role: "ADMIN" | "USER" | null
   email: string | null
   isAuthenticated: boolean
+  isLoading?: boolean
   login: (token: string) => void
   logout: () => void
 }
 
-/* Contexto */
 export const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -31,8 +29,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [role, setRole] = useState<"ADMIN" | "USER" | null>(null)
   const [email, setEmail] = useState<string | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+   const [isLoading, setIsLoading] = useState(true)
 
-  /* Al cargar la app: recuperar sesión */
+
   useEffect(() => {
     const storedToken = getToken()
 
@@ -44,9 +43,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setEmail(decoded.email)
       setIsAuthenticated(true)
     }
+     setIsLoading(false)
   }, [])
 
-  /* Login */
   const login = (newToken: string) => {
     const decoded = jwtDecode<JwtPayload>(newToken)
 
@@ -57,7 +56,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setIsAuthenticated(true)
   }
 
-  /* Logout */
   const logout = () => {
     removeToken()
     setToken(null)
@@ -73,6 +71,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         role,
         email,
         isAuthenticated,
+       isLoading,
         login,
         logout,
       }}
