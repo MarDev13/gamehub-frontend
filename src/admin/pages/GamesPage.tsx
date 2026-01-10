@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom"
 import GamesTable from "../components/GamesTable"
+import ImportRawgButton from "../components/ImportRawgButton"
 
 export default function GamesPage() {
   const navigate = useNavigate()
@@ -17,6 +18,8 @@ export default function GamesPage() {
        <Button onClick={() => navigate("/admin/games/new")} className="center">
           Crear juego
         </Button>
+        
+        <ImportRawgButton />
     </div>
     </div>
   )

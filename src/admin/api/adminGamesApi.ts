@@ -46,3 +46,8 @@ export const togglePublishGame = (id: string) => {
     method: "POST",
   })
 }
+export const importRawgGames = () => {
+  return apiFetch("/admin/games/import-rawg", {
+    method: "POST",
+  });
+};

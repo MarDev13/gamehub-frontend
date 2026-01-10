@@ -22,6 +22,8 @@ import CreatePlatformPage from "@/admin/pages/CreatePlatformPage";
 import EditPlatformPage from "@/admin/pages/EditPlatformPage";
 import ProfilePage from "@/admin/pages/ProfilePage";
 import EditProfilePage from "@/admin/pages/EditProfilePage";
+import ShopHomePage from "@/shop/pages/ShopHomePage";
+import ShopLayout from "@/shop/layout/ShopLayout";
 
 export default function AppRouter() {
     return (
@@ -55,6 +57,11 @@ export default function AppRouter() {
                     <Route index element={<Profile />} />
                 </Route>
             </Route>
+          <Route path="/shop" element={<ShopLayout />}>
+  <Route index element={<ShopHomePage />} />
+  {/* futura página de detalle */}
+  {/* <Route path="games/:id" element={<GameDetailPage />} /> */}
+</Route>
 
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes >
