@@ -7,6 +7,7 @@ import {
   ShoppingCart,
   LogOut,
   User,
+  Layers,
 } from "lucide-react"
 import { NavLink } from "react-router-dom"
 
@@ -51,9 +52,9 @@ const items = [
     icon: Tags,
   },
   {
-    title: "Pedidos",
-    url: "/admin/orders",
-    icon: ShoppingCart,
+    title: "Plataformas",
+    url: "/admin/platforms",
+    icon: Layers,
   },
 ]
 
@@ -94,7 +95,6 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* User section */}
       <SidebarFooter className="border-t p-3">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted">
@@ -102,9 +102,9 @@ export function AppSidebar() {
           </div>
 
           <div className="flex flex-col text-sm overflow-hidden">
-           <span className="font-medium truncate">
-  {email}
-</span>
+            <span className="font-medium truncate">
+              {email}
+            </span>
 
             <button
               onClick={logout}
