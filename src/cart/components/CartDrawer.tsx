@@ -24,24 +24,54 @@ export default function CartDrawer() {
     <>
       {/* OVERLAY */}
       <div
-        className="fixed inset-0 bg-black/40 z-40"
+        className="fixed inset-0 bg-black/60 z-40"
         onClick={closeCart}
       />
 
       {/* DRAWER */}
-      <aside className="fixed right-0 top-0 z-50 h-full w-80 bg-[#fff6dc] flex flex-col shadow-xl">
-        
+      <aside
+        className="
+          fixed right-0 top-0 z-50
+          h-full w-80
+          bg-[#f1ecd9]
+          border-l-[4px] border-black
+          shadow-[-6px_0_0_#000]
+          flex flex-col
+        "
+      >
         {/* HEADER */}
-        <div className="flex items-center justify-between border-b px-4 py-4">
-          <h2 className="text-lg font-bold text-[#3f351a]">
+        <div
+          className="
+            flex items-center justify-between
+            border-b-[4px] border-black
+            px-4 py-4
+            bg-[#f1ecd9]
+          "
+        >
+          <h2
+            className="
+              font-pixel
+              text-lg
+              font-bold
+              text-[#1f1f1f]
+            "
+          >
             Tu carrito
           </h2>
 
           <button
             onClick={closeCart}
-            className="rounded p-1 hover:bg-[#f3e1b3] transition"
+            className="
+              border-2 border-black
+              bg-[#ffd966]
+              p-1
+              rounded-md
+              hover:bg-[#ffcf4a]
+              active:translate-y-[1px]
+              transition
+            "
           >
-            <X />
+            <X size={18} />
           </button>
         </div>
 
@@ -49,34 +79,46 @@ export default function CartDrawer() {
         <div className="flex-1 overflow-y-auto px-4 py-4">
           {items.length === 0 ? (
             <div className="flex h-full items-center justify-center">
-              <div className="text-center text-[#7a6a44] space-y-2">
-                <p className="text-lg font-medium">
+              <div className="text-center space-y-2">
+                <p className="text-sm font-bold text-[#3f351a]">
                   El carrito está vacío
                 </p>
-                <p className="text-sm">
-                  Añade algún juego para empezar 
+                <p className="text-xs text-[#7a6a44]">
+                  Añade algún juego para empezar
                 </p>
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {items.map(item => (
                 <div
                   key={item.id}
-                  className="flex gap-3 items-center rounded bg-[#f3e1b3] p-3"
+                  className="
+                    flex gap-3 items-center
+                    border-2 border-black
+                    bg-[#f7f2e3]
+                    p-3
+                    shadow-[0_3px_0_#000]
+                  "
                 >
                   {/* IMAGE */}
                   {item.imageUrl && (
                     <img
                       src={item.imageUrl}
                       alt={item.title}
-                      className="h-14 w-10 rounded object-cover"
+                      className="
+                        h-16 w-12
+                        object-cover
+                        border-2 border-black
+                        select-none
+                      "
+                      draggable={false}
                     />
                   )}
 
                   {/* INFO */}
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-[#3f351a]">
+                    <p className="text-sm font-bold text-[#1f1f1f] truncate">
                       {item.title}
                     </p>
                     <p className="text-xs text-[#7a6a44]">
@@ -86,19 +128,29 @@ export default function CartDrawer() {
 
                   {/* ACTIONS */}
                   <div className="flex flex-col items-center gap-2">
-                    {/* ADD ONE */}
                     <button
                       onClick={() => addToCart(item)}
-                      className="rounded bg-[#e8d7a3] p-1 hover:bg-[#d9c68a] transition"
+                      className="
+                        border-2 border-black
+                        bg-[#ffd966]
+                        p-1
+                        rounded
+                        hover:bg-[#ffcf4a]
+                        active:translate-y-[1px]
+                        transition
+                      "
                       title="Añadir uno más"
                     >
                       <Plus size={14} />
                     </button>
 
-                    {/* REMOVE ALL */}
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="text-[#7a6a44] hover:text-red-600 transition"
+                      className="
+                        text-[#7a6a44]
+                        hover:text-[#c1121f]
+                        transition
+                      "
                       title="Eliminar del carrito"
                     >
                       <Trash2 size={16} />
@@ -112,9 +164,16 @@ export default function CartDrawer() {
 
         {/* FOOTER */}
         {items.length > 0 && (
-          <div className="border-t px-4 py-4 space-y-4">
+          <div
+            className="
+              border-t-[4px] border-black
+              px-4 py-4
+              space-y-4
+              bg-[#f1ecd9]
+            "
+          >
             {/* TOTAL */}
-            <div className="flex justify-between text-sm font-semibold text-[#3f351a]">
+            <div className="flex justify-between text-sm font-bold text-[#1f1f1f]">
               <span>Total</span>
               <span>{total.toFixed(2)} €</span>
             </div>
@@ -126,11 +185,15 @@ export default function CartDrawer() {
                 navigate("shop/checkout")
               }}
               className="
-                w-full rounded
+                w-full
+                border-2 border-black
                 bg-[#3f351a]
-                py-2 text-sm font-medium
+                py-2
+                text-sm
+                font-bold
                 text-white
                 hover:bg-[#2e2713]
+                active:translate-y-[1px]
                 transition
               "
             >
@@ -142,6 +205,7 @@ export default function CartDrawer() {
     </>
   )
 }
+
 
 
 

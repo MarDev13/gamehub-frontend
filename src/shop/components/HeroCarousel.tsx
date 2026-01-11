@@ -1,71 +1,69 @@
 import { useRef } from "react"
 import Autoplay from "embla-carousel-autoplay"
-
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
-
-const mockGames = [
-  {
-    id: 1,
-    title: "",
-    image: "/img/games/bienvenido-game-hub.png",
-  },
-  {
-    id: 2,
-    title: "",
-    image: "/img/games/descuentos-exclusivos-gamehub.png",
-  },
-  {
-    id: 3,
-    title: "",
-    image: "/img/games/personajes-jugando.png",
-  },
-]
 
 export default function HeroCarousel() {
   const autoplay = useRef(
-    Autoplay({
-      delay: 8000,
-      stopOnInteraction: false,
-    })
+    Autoplay({ delay: 6000, stopOnInteraction: false })
   )
 
   return (
-    <section className="w-full">
+    <section className="w-full border-b-[4px] border-black bg-[#0f0f0f]">
       <Carousel
         className="w-full"
         plugins={[autoplay.current]}
+        opts={{ loop: true }}
       >
         <CarouselContent>
-          {mockGames.map((game) => (
-            <CarouselItem key={game.id}>
-              <div className="relative h-[340px] sm:h-[300px] md:h-[420px] overflow-hidden rounded">
-                <img
-                  src={game.image}
-                  alt={game.title}
-                  className="h-full w-full object-center object-cover"
-                />
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/30 flex items-end p-6">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">
-                    {game.title}
-                  </h2>
+          <CarouselItem>
+            {/* CONTENEDOR HERO */}
+            <div className="py-10 px-4 flex justify-center">
+              {/* MARCO TIPO CONSOLA */}
+              <div
+                className="
+                  w-full max-w-6xl
+                  bg-[#1b1b1b]
+                  border-[4px] border-black
+                  shadow-[0_8px_0_#000]
+                  rounded-md
+                  p-3
+                "
+              >
+                {/* “PANTALLA” */}
+                <div
+                  className="
+                    bg-black
+                    border-2 border-black
+                    overflow-hidden
+                  "
+                >
+                  <img
+                    src="/img/games/personajes-jugando.png"
+                    alt="Personajes retro jugando"
+                    className="
+                      w-full
+                      max-h-[420px]
+                      object-cover
+                      pixelated
+                      select-none
+                      mx-auto
+                    "
+                    draggable={false}
+                  />
                 </div>
               </div>
-            </CarouselItem>
-          ))}
+            </div>
+          </CarouselItem>
         </CarouselContent>
-
-        {/* Flechas */}
-        <CarouselPrevious className="left-4" />
-        <CarouselNext className="right-4" />
       </Carousel>
     </section>
   )
 }
+
+
+
+

@@ -5,25 +5,33 @@ import DiscountBlock from "../components/DiscountBlock"
 import { useState } from "react"
 
 export default function ShopHomePage() {
-   const [activePlatform, setActivePlatform] = useState<string | null>(null)
+  const [activePlatform, setActivePlatform] = useState<string | null>(null)
   return (
+    <>
+    
     <div className="space-y-16">
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-[#3f351a] text-center">
-  Revive los clásicos que marcaron una época
-</h1>
-      {/* HERO */}
       <HeroCarousel />
 
-      {/* PLATFORMS */}
+     <h1 className="
+  font-pixel
+  text-3xl sm:text-4xl
+  font-extrabold
+  text-[#f5c84b]
+  text-center
+  drop-shadow-[0_2px_0_#000]
+">
+  Los clásicos nunca mueren
+</h1>
+
+
       <PlatformFilter activePlatform={activePlatform}
         onChange={setActivePlatform} />
 
-      {/* GAMES */}
       <GameGrid activePlatform={activePlatform} />
 
-      {/* DISCOUNTS */}
-      <DiscountBlock  />
+      <DiscountBlock />
     </div>
+    </>
   )
 }
 

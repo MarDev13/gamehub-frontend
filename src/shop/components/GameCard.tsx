@@ -1,106 +1,110 @@
 import { getGamePrice } from "../utils/getGamePrice"
 import { useNavigate } from "react-router-dom"
+import { Gamepad2 } from "lucide-react"
+import { useClickSound } from "@/shared/hooks/useClickSound"
 
 export function GameCard({ game }: { game: any }) {
   const navigate = useNavigate()
+  const playClick = useClickSound()
+
   const goToDetail = () => {
+    playClick()
     navigate(`/shop/games/${game.id}`)
   }
+
   return (
-    <div className="group relative overflow-hidden rounded">
-      {/* PRICE BADGE */}
+    <div
+      onClick={goToDetail}
+      className="
+        relative
+        bg-[#e9e4d4]
+        border-[3px] border-black
+        rounded-md
+        overflow-hidden
+        cursor-pointer
+        transition-all duration-150
+        hover:-translate-y-[2px]
+        hover:shadow-[0_6px_0_#000]
+        active:translate-y-[1px]
+        active:shadow-[0_2px_0_#000]
+      "
+    >
+    
       <span
         className="
-          absolute top-3 right-3 z-10
-          rounded
-          bg-[#f7b6b6]
-          px-3 py-1
-          text-sm font-bold
-          text-[#8f2d2d]
-          shadow-sm
+          absolute top-2 right-2 z-10
+          bg-[#ffd966]
+          border-2 border-black
+          px-2 py-0.5
+          text-[11px] font-bold
         "
       >
         {getGamePrice(game)} €
       </span>
 
-      {/* DISCOUNT BADGE */}
+    
       {game.onSale && game.discountPct && (
         <span
           className="
-            absolute top-3 left-3 z-10
-            rounded
-            bg-[#f2a65a]
-            px-3 py-1
-            text-xs font-bold
-            text-[#5a2d00]
-            shadow-sm
+            absolute top-2 left-2 z-10
+            bg-[#c1121f]
+            border-2 border-black
+            px-2 py-0.5
+            text-[11px] font-bold text-white
           "
         >
           -{game.discountPct}%
         </span>
       )}
 
-      {/* IMAGE */}
+    
       <img
         src={game.imageUrl || "/img/placeholder-game.png"}
         alt={game.title}
         className="
-          w-full
-          aspect-[3/4]
+          w-full aspect-[3/4]
           object-cover
-          transition-transform
-          duration-300
-          group-hover:scale-105
+          border-b-2 border-black
+          select-none
         "
+        draggable={false}
       />
 
-      {/* TITLE (visible by default, hidden on hover) */}
-      <div
-        className="
-          absolute bottom-0 left-0 right-0
-          bg-black/60
-          px-3 py-2
-          text-sm font-medium
-          text-white
-          transition-opacity
-          duration-300
-          group-hover:opacity-0
-        "
-      >
-        {game.title}
+     
+      <div className="bg-[#f1ecd9] border-b-2 border-black px-3 py-2">
+        <h3 className="text-xs font-bold tracking-wide truncate text-[#1f1f1f]">
+          {game.title}
+        </h3>
       </div>
 
-      {/* HOVER OVERLAY */}
-      <div
-        className="
-          absolute inset-0
-          bg-black/40
-          opacity-0
-          group-hover:opacity-100
-          transition-opacity
-          duration-300
-          flex items-center justify-center
-        "
-      >
+     
+      <div className="p-3">
         <button
+          onClick={(e) => {
+            e.stopPropagation()
+            goToDetail()
+          }}
           className="
-            rounded
-            bg-[#f2a65a]
-            px-6 py-3
-            text-sm
-            font-semibold
-            text-[#5a2d00]
-            shadow-md
-            hover:bg-[#e0952c]
+            w-full
+            border-2 border-black
+            bg-[#ffd966]
+            text-xs font-bold
+            py-1.5
+            tracking-wide
+            hover:bg-[#ffcf4a]
+            active:bg-[#e6b800]
             transition
+            flex items-center justify-center gap-2
           "
-          onClick={goToDetail}
         >
-          Ver más detalles
+          <Gamepad2 className="w-4 h-4" />
+          Ver detalles
         </button>
       </div>
     </div>
   )
 }
+
+
 
 

@@ -5,96 +5,152 @@ import { Game } from "@/admin/types/games"
 import { useCart } from "@/cart/context/CartContext"
 
 export default function GameDetailPage() {
-    const { addToCart } = useCart()
-
+  const { addToCart } = useCart()
   const { id } = useParams()
   const [game, setGame] = useState<Game | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!id) return
-
     getShopGameById(id)
       .then(setGame)
       .finally(() => setLoading(false))
   }, [id])
 
-  if (loading) return <p>Cargando juego...</p>
-  if (!game) return <p>Juego no encontrado</p>
+  if (loading) {
+    return (
+      <div className="text-center font-pixel text-[#bfae78]">
+        Cargando juego...
+      </div>
+    )
+  }
+
+  if (!game) {
+    return (
+      <div className="text-center font-pixel text-[#c1121f]">
+        Juego no encontrado
+      </div>
+    )
+  }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-10">
+    <div
+      className="
+        max-w-6xl mx-auto
+        bg-[#fff6dc]
+        border-[4px] border-black
+        rounded-md
+        p-6
+        shadow-[0_8px_0_#000]
+        space-y-10
+      "
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        
-        {/* LEFT: IMAGE */}
-        <div>
+        {/* IMAGE / SCREEN */}
+        <div
+          className="
+            bg-black
+            border-4 border-black
+            rounded
+            p-2
+            shadow-inner
+            flex items-center justify-center
+          "
+        >
           <img
             src={game.imageUrl}
             alt={game.title}
-            className="w-full rounded-lg object-cover"
+            className="w-full object-contain pixelated"
           />
         </div>
 
-        {/* RIGHT: INFO */}
+        {/* INFO */}
         <div className="space-y-5">
-          
-          {/* TITLE */}
-          <h1 className="text-3xl font-bold text-[#3f351a]">
+          <h1
+            className="
+              font-pixel
+              text-2xl
+              text-[#201800]
+              drop-shadow-[0_2px_0_#000]
+            "
+          >
             {game.title}
           </h1>
 
-          {/* PRICE */}
           {game.onSale ? (
-            <p className="text-2xl">
-              <span className="line-through text-muted-foreground mr-3">
+            <div className="text-xl">
+              <span className="line-through text-[#7a6a44] mr-3">
                 {game.price} €
               </span>
               <span className="text-red-600 font-bold">
                 {game.salePrice} €
               </span>
-            </p>
+            </div>
           ) : (
-            <p className="text-2xl font-bold text-[#3f351a]">
+            <div className="text-xl font-bold text-[#3f351a]">
               {game.price} €
-            </p>
+            </div>
           )}
-          <button
-  onClick={() => addToCart(game)}
-  className="
-    mt-4
-    w-full
-    rounded-lg
-    bg-[#d1b06a]
-    py-3
-    text-lg
-    font-semibold
-    text-[#3f351a]
-    hover:bg-[#b89954]
-    transition
-  "
->
-  Añadir al carrito
-</button>
+
+          {/* CTA */}
+          <div className="pt-2">
+            <button
+              onClick={() => addToCart(game)}
+              className="
+                w-full
+                border-2 border-black
+                bg-[#ffd966]
+                py-2
+                font-pixel
+                text-xs
+                text-[#3f351a]
+                shadow-[0_3px_0_#000]
+                active:translate-y-[2px]
+                active:shadow-none
+                hover:bg-[#ffcf4a]
+                transition
+              "
+            >
+              Añadir al carrito
+            </button>
+          </div>
 
           {/* DESCRIPTION */}
           {game.description && (
-            <p className="text-[#7a6a44] leading-relaxed">
+            <div
+              className="
+                bg-[#efe8d2]
+                border border-black
+                rounded
+                p-4
+                text-sm
+                text-[#3f351a]
+                leading-relaxed
+              "
+            >
               {game.description}
-            </p>
+            </div>
           )}
 
           {/* PLATFORMS */}
           {game.platforms.length > 0 && (
             <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-[#3f351a]">
-                Plataformas disponibles
+              <h3 className="font-pixel text-sm text-[#3f351a]">
+                Plataformas
               </h3>
 
               <div className="flex flex-wrap gap-2">
                 {game.platforms.map(p => (
                   <span
                     key={p.id}
-                    className="rounded bg-[#f3e1b3] px-3 py-1 text-sm font-medium text-[#5a4a22]"
+                    className="
+                      bg-[#f3e1b3]
+                      border border-black
+                      px-3 py-1
+                      text-xs
+                      font-bold
+                      text-[#3f351a]
+                    "
                   >
                     {p.name}
                   </span>
@@ -106,7 +162,7 @@ export default function GameDetailPage() {
           {/* TAGS */}
           {game.tags.length > 0 && (
             <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-[#3f351a]">
+              <h3 className="font-pixel text-sm text-[#3f351a]">
                 Etiquetas
               </h3>
 
@@ -114,7 +170,14 @@ export default function GameDetailPage() {
                 {game.tags.map(t => (
                   <span
                     key={t.id}
-                    className="rounded bg-[#e8d7a3] px-3 py-1 text-sm font-medium text-[#6b5a2a]"
+                    className="
+                      bg-[#d1b06a]
+                      border border-black
+                      px-3 py-1
+                      text-xs
+                      font-bold
+                      text-[#3f351a]
+                    "
                   >
                     #{t.name}
                   </span>
@@ -122,7 +185,6 @@ export default function GameDetailPage() {
               </div>
             </div>
           )}
-
         </div>
       </div>
     </div>

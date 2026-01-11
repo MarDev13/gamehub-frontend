@@ -19,7 +19,6 @@ export default function DiscountBlock() {
   const [games, setGames] = useState<Game[]>([])
   const [loading, setLoading] = useState(false)
 
-  // ✅ SIEMPRE se ejecuta (nunca condicional)
   useEffect(() => {
     if (!isAuthenticated) {
       setGames([])
@@ -49,12 +48,12 @@ export default function DiscountBlock() {
 
   if (!isAuthenticated) {
     return (
-      <section className="space-y-4 rounded  bg-[#f3e1b3] p-6 text-center">
-        <h3 className="text-xl font-bold text-[#3f351a]">
+      <section className="space-y-4 rounded  p-6 text-center">
+        <h3 className="text-xl font-pixel font-bold text-[#e6b65c]">
           Descuentos exclusivos
         </h3>
 
-        <p className="text-sm text-[#7a6a44]">
+        <p className="text-sm text-[#bfae78]">
           Inicia sesión para acceder a ofertas solo para usuarios registrados
         </p>
 
@@ -98,7 +97,15 @@ export default function DiscountBlock() {
 
   return (
     <section className="space-y-4">
-      <h3 className="text-2xl font-bold text-[#3f351a]">
+        <h3 className="
+        font-pixel
+        text-2xl
+        font-bold
+        text-[#f5c84b]
+        drop-shadow-[0_2px_0_#000]
+        text-center
+        mb-10
+      ">
         Ofertas exclusivas para ti
       </h3>
 
