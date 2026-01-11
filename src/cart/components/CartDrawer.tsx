@@ -123,7 +123,7 @@ export default function CartDrawer() {
             <button
               onClick={() => {
                 closeCart()
-                navigate("/checkout")
+                navigate("shop/checkout")
               }}
               className="
                 w-full rounded

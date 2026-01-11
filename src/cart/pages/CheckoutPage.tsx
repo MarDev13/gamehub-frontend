@@ -1,50 +1,67 @@
-import { useCart } from "@/cart/context/CartContext"
-import { useNavigate } from "react-router-dom"
+import { useCart } from "@/cart/context/CartContext";
+import { createOrder } from "@/api/orderApi";
+import { useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 
 export default function CheckoutPage() {
-  const { items } = useCart()
-  const navigate = useNavigate()
+  const { items } = useCart();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const isSubmitting = useRef(false);
 
-  const total = items.reduce(
-    (sum, item) =>
-      sum + (item.salePrice ?? item.price) * item.quantity,
-    0
-  )
+  const total = Number(
+    items.reduce(
+      (sum, item) =>
+        sum + (item.salePrice ?? item.price) * item.quantity,
+      0
+    ).toFixed(2)
+  );
 
-  if (items.length === 0) {
-    return <p className="text-center">Tu carrito está vacío</p>
-  }
+  const handleBuy = async () => {
+    if (isSubmitting.current || items.length === 0) return;
+
+    isSubmitting.current = true;
+    setLoading(true);
+
+    try {
+      await createOrder(total);
+      navigate("/shop/order-success");
+    } catch (error) {
+      console.error(error);
+      isSubmitting.current = false;
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <h1 className="text-3xl font-bold">Resumen de compra</h1>
+    <div className="max-w-4xl mx-auto space-y-6">
+      <h1 className="text-3xl font-bold">Finalizar compra</h1>
 
-      <div className="space-y-4">
-        {items.map(item => (
-          <div
-            key={item.id}
-            className="flex justify-between border-b pb-2"
-          >
-            <span>
-              {item.title} × {item.quantity}
-            </span>
-            <span>
-              {((item.salePrice ?? item.price) * item.quantity).toFixed(2)} €
-            </span>
-          </div>
-        ))}
-      </div>
+      {items.map(item => (
+        <div key={item.id} className="flex justify-between border-b py-2">
+          <span>
+            {item.title} x{item.quantity}
+          </span>
+          <span>
+            {((item.salePrice ?? item.price) * item.quantity).toFixed(2)} €
+          </span>
+        </div>
+      ))}
 
-      <div className="text-xl font-bold">
+      <div className="text-right text-xl font-bold">
         Total: {total.toFixed(2)} €
       </div>
 
       <button
-        onClick={() => navigate("/checkout/success")}
-        className="w-full rounded-lg bg-[#3f351a] py-3 text-white font-semibold"
+        onClick={handleBuy}
+        disabled={loading || items.length === 0}
+        className="w-full bg-black text-white py-3 rounded-lg disabled:opacity-50"
       >
-        Confirmar compra
+        {loading ? "Procesando..." : "Comprar"}
       </button>
     </div>
-  )
+  );
 }
+
+
+

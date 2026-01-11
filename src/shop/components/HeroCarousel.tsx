@@ -12,18 +12,18 @@ import {
 const mockGames = [
   {
     id: 1,
-    title: "Polda",
-    image: "/img/games/polda.png",
+    title: "",
+    image: "/img/games/bienvenido-game-hub.png",
   },
   {
     id: 2,
-    title: "Lollypop",
-    image: "/img/games/lollypop.png",
+    title: "",
+    image: "/img/games/descuentos-exclusivos-gamehub.png",
   },
   {
     id: 3,
-    title: "Pizza Pop!",
-    image: "/img/games/pizzapop.png",
+    title: "",
+    image: "/img/games/personajes-jugando.png",
   },
 ]
 
@@ -44,11 +44,11 @@ export default function HeroCarousel() {
         <CarouselContent>
           {mockGames.map((game) => (
             <CarouselItem key={game.id}>
-              <div className="relative h-[240px] sm:h-[300px] md:h-[420px] overflow-hidden rounded">
+              <div className="relative h-[340px] sm:h-[300px] md:h-[420px] overflow-hidden rounded">
                 <img
                   src={game.image}
                   alt={game.title}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-center object-cover"
                 />
 
                 {/* Overlay */}
