@@ -19,7 +19,7 @@ export default function AdminLayout() {
 
 
         <div className="flex flex-1 flex-col">
-          <header className="flex h-14 items-center border-b px-4 md:px-6">
+          <header className="flex h-14 items-center border-b px-4 md:px-6 bg-slate-50">
             <SidebarTrigger className="md:hidden" />
             <div className="flex items-center gap-2 align-center">
               <img
@@ -30,57 +30,9 @@ export default function AdminLayout() {
               <span className="text-lg font-semibold">GameHub</span>
             </div>
             <div className="ml-auto flex items-center gap-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full bg-muted hover:bg-muted/80"
-                  >
-                    <User className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent
-                  align="end"
-                  className="w-48 rounded-xl bg-background p-2 shadow-lg"
-                >
-                  <DropdownMenuItem
-                    onClick={() => navigate("/admin/profile")}
-                    className="flex items-center gap-2 text-sm cursor-pointer"
-                  >
-                    <User className="h-4 w-4 text-muted-foreground" />
-                    Ver perfil
-                  </DropdownMenuItem>
-
-                  <DropdownMenuSeparator />
-
-                  <DropdownMenuItem
-                    onClick={() => {
-                      localStorage.removeItem("token")
-                      navigate("/login")
-                    }}
-                    className="flex items-center gap-2 text-sm text-red-600 cursor-pointer focus:text-red-600"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    Cerrar sesión
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full bg-muted hover:bg-muted/80"
-                onClick={() => navigate("/admin/profile/edit")}
-              >
-                <Settings className="h-5 w-5" />
-              </Button>
             </div>
           </header>
-
-
-          <main className="flex-1 p-6 bg-muted/40">
+          <main className="flex-1 p-6 bg-slate-50">
             <Outlet />
           </main>
         </div>
