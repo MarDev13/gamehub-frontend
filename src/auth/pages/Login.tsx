@@ -35,7 +35,7 @@ export function LoginPage() {
             login(data.access_token)
 
             setTimeout(() => {
-                navigate(role === "ADMIN" ? "/admin" : "/account")
+                navigate(role === "ADMIN" ? "/admin" : "/shop")
             }, 0)
         } catch {
             setError("Usuario o contraseña incorrecto")

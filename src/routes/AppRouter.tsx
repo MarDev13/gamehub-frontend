@@ -24,6 +24,10 @@ import ProfilePage from "@/admin/pages/ProfilePage";
 import EditProfilePage from "@/admin/pages/EditProfilePage";
 import ShopHomePage from "@/shop/pages/ShopHomePage";
 import ShopLayout from "@/shop/layout/ShopLayout";
+import GameDetailPage from "@/shop/pages/GameDetailPage";
+import CheckoutPage from "@/cart/pages/CheckoutPage"
+import CheckoutSuccessPage from "@/cart/pages/CheckoutSuccessPage"
+import CheckoutLayout from "@/cart/layout/CheckoutLayout";
 
 export default function AppRouter() {
     return (
@@ -57,13 +61,17 @@ export default function AppRouter() {
                     <Route index element={<Profile />} />
                 </Route>
             </Route>
-          <Route path="/shop" element={<ShopLayout />}>
-  <Route index element={<ShopHomePage />} />
-  {/* futura página de detalle */}
-  {/* <Route path="games/:id" element={<GameDetailPage />} /> */}
-</Route>
+            <Route path="/shop" element={<ShopLayout />}>
+                <Route index element={<ShopHomePage />} />
+                <Route path="/shop/games/:id" element={<GameDetailPage />} />
 
-            <Route path="*" element={<Navigate to="/login" replace />} />
+            </Route>
+            <Route path="/checkout" element={<CheckoutLayout />}>
+                <Route index element={<CheckoutPage />} />
+                <Route path="success" element={<CheckoutSuccessPage />} />
+            </Route>
+
+            <Route path="*" element={<Navigate to="/shop" replace />} />
         </Routes >
     );
 }

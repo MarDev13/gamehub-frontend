@@ -10,5 +10,13 @@ export type ShopGamesResponse = {
 export const getShopGames = (page = 1, limit = 12): Promise<ShopGamesResponse> => {
   return apiFetch(`/shop/games?page=${page}&limit=${limit}`);
 };
+export const getDiscountGames = () => {
+  return apiFetch("/shop/games/discounts")
+}
+export const getShopGameById = (id: string) => {
+  return apiFetch(`/shop/games/${id}`)
+
+}
+
 
 

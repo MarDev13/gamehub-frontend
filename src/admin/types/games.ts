@@ -9,14 +9,15 @@ export type GameGenre = {
 }
 
 export type Game = {
-  id: string
+   id: string
   title: string
+  description?: string
+  imageUrl?: string
   price: number
-  stock: number
-  isPublished: boolean
-  createdAt: string
-
-  genre: GameGenre | null
-  tags: GameTag[]
+  salePrice?: number
+  discountPct?: number
+  onSale: boolean
+  platforms: { id: string; name: string }[]
+  tags: { id: string; name: string }[]
 }
 

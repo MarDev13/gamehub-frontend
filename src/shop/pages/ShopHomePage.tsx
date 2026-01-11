@@ -1,60 +1,33 @@
-import { useEffect, useState } from "react";
-import { getShopGames } from "@/api/shopApi";
-import { GameCard } from "../components/GameCard";
-import { Button } from "@/components/ui/button";
+import HeroCarousel from "../components/HeroCarousel"
+import PlatformFilter from "../components/PlatformFilter"
+import GameGrid from "../components/GameGrid"
+import DiscountBlock from "../components/DiscountBlock"
+import { useState } from "react"
 
 export default function ShopHomePage() {
-  const [games, setGames] = useState<any[]>([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    loadGames();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const loadGames = async () => {
-    if (!hasMore || loading) return;
-
-    setLoading(true);
-    try {
-      const data = await getShopGames(page, 12);
-
-      setGames(prev => [...prev, ...data.items]);
-      setHasMore(data.hasMore);
-      setPage(prev => prev + 1);
-    } catch (error) {
-      console.error("Error cargando juegos", error);
-      setHasMore(false);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+   const [activePlatform, setActivePlatform] = useState<string | null>(null)
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Tienda retro & cozy</h1>
+    <div className="space-y-16">
+      <h1 className="text-3xl sm:text-4xl font-extrabold text-[#3f351a] text-center">
+  Revive los clásicos que marcaron una época
+</h1>
+      {/* HERO */}
+      <HeroCarousel />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {games.map(game => (
-          <GameCard key={game.id} game={game} />
-        ))}
-      </div>
+      {/* PLATFORMS */}
+      <PlatformFilter activePlatform={activePlatform}
+        onChange={setActivePlatform} />
 
-      <div className="flex justify-center mt-10">
-        {hasMore ? (
-          <Button onClick={loadGames} disabled={loading}>
-            {loading ? "Cargando..." : "Cargar más"}
-          </Button>
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            No hay más juegos disponibles
-          </p>
-        )}
-      </div>
+      {/* GAMES */}
+      <GameGrid activePlatform={activePlatform} />
+
+      {/* DISCOUNTS */}
+      <DiscountBlock  />
     </div>
-  );
+  )
 }
+
+
+
 
 
