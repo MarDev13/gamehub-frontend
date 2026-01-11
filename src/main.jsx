@@ -9,12 +9,12 @@ import { BrowserRouter } from "react-router-dom"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <BrowserRouter>
-      <AuthProvider>
         <CartProvider>
           <App />
         </CartProvider>
+        </BrowserRouter>
       </AuthProvider>
-    </BrowserRouter>
   </StrictMode>,
 )
