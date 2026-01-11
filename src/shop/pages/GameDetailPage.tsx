@@ -46,7 +46,7 @@ export default function GameDetailPage() {
       "
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* IMAGE / SCREEN */}
+
         <div
           className="
             bg-black
@@ -64,7 +64,6 @@ export default function GameDetailPage() {
           />
         </div>
 
-        {/* INFO */}
         <div className="space-y-5">
           <h1
             className="
@@ -92,7 +91,6 @@ export default function GameDetailPage() {
             </div>
           )}
 
-          {/* CTA */}
           <div className="pt-2">
             <button
               onClick={() => addToCart(game)}
@@ -115,7 +113,7 @@ export default function GameDetailPage() {
             </button>
           </div>
 
-          {/* DESCRIPTION */}
+         
           {game.description && (
             <div
               className="
@@ -132,7 +130,6 @@ export default function GameDetailPage() {
             </div>
           )}
 
-          {/* PLATFORMS */}
           {game.platforms.length > 0 && (
             <div className="space-y-2">
               <h3 className="font-pixel text-sm text-[#3f351a]">
@@ -159,7 +156,6 @@ export default function GameDetailPage() {
             </div>
           )}
 
-          {/* TAGS */}
           {game.tags.length > 0 && (
             <div className="space-y-2">
               <h3 className="font-pixel text-sm text-[#3f351a]">

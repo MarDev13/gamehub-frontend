@@ -22,13 +22,11 @@ export default function CartDrawer() {
 
   return (
     <>
-      {/* OVERLAY */}
       <div
         className="fixed inset-0 bg-black/60 z-40"
         onClick={closeCart}
       />
 
-      {/* DRAWER */}
       <aside
         className="
           fixed right-0 top-0 z-50
@@ -39,7 +37,6 @@ export default function CartDrawer() {
           flex flex-col
         "
       >
-        {/* HEADER */}
         <div
           className="
             flex items-center justify-between
@@ -75,7 +72,6 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        {/* CONTENT */}
         <div className="flex-1 overflow-y-auto px-4 py-4">
           {items.length === 0 ? (
             <div className="flex h-full items-center justify-center">
@@ -101,7 +97,6 @@ export default function CartDrawer() {
                     shadow-[0_3px_0_#000]
                   "
                 >
-                  {/* IMAGE */}
                   {item.imageUrl && (
                     <img
                       src={item.imageUrl}
@@ -116,7 +111,6 @@ export default function CartDrawer() {
                     />
                   )}
 
-                  {/* INFO */}
                   <div className="flex-1">
                     <p className="text-sm font-bold text-[#1f1f1f] truncate">
                       {item.title}
@@ -126,7 +120,6 @@ export default function CartDrawer() {
                     </p>
                   </div>
 
-                  {/* ACTIONS */}
                   <div className="flex flex-col items-center gap-2">
                     <button
                       onClick={() => addToCart(item)}
@@ -162,7 +155,6 @@ export default function CartDrawer() {
           )}
         </div>
 
-        {/* FOOTER */}
         {items.length > 0 && (
           <div
             className="
@@ -178,7 +170,6 @@ export default function CartDrawer() {
               <span>{total.toFixed(2)} €</span>
             </div>
 
-            {/* CHECKOUT */}
             <button
               onClick={() => {
                 closeCart()

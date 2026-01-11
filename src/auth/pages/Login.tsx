@@ -73,7 +73,7 @@ export function LoginPage() {
                     style={{ animationDuration: "20s", animationDelay: "-18s" }}
                 />
 
-                {/* Derecha */}
+
                 <img
                     src="/img/moneda-retro.png"
                     className="absolute left-[68%] w-12 opacity-18 animate-zigzag-soft"

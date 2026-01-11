@@ -39,26 +39,42 @@ export default function GameGrid({ activePlatform }: Props) {
     setPage(p => p + 1)
     setLoading(false)
   }
-
+const visibleGames = games.filter(game => game.onSale !== true)
   return (
     <section className="space-y-6">
-      {/* GRID */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-        {games
-          .filter(game => game.onSale !== true)
-          .map(game => (
-            <GameCard key={game.id} game={game} />
-          ))}
-      </div>
 
-      {/* LOAD MORE */}
-      <div className="flex justify-center">
-        {hasMore && (
-          <Button onClick={() => loadGames()} disabled={loading}>
-            {loading ? "Cargando..." : "Cargar más"}
-          </Button>
-        )}
-      </div>
-    </section>
+  {visibleGames.length === 0 && !loading && (
+    <div
+      className="
+        text-center
+        bg-[#fff6dc]
+        border-2 border-black
+        p-4
+        font-pixel
+        text-sm
+        text-[#3f351a]
+      "
+    >
+      No se han encontrado juegos de esta plataforma en las primeras páginas.
+      <br />
+      Pulsa <strong>Cargar más</strong> para seguir buscando.
+    </div>
+  )}
+
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+    {visibleGames.map(game => (
+      <GameCard key={game.id} game={game} />
+    ))}
+  </div>
+
+  <div className="flex justify-center">
+    {hasMore && (
+      <Button onClick={() => loadGames()} disabled={loading}>
+        {loading ? "Cargando..." : "Cargar más"}
+      </Button>
+    )}
+  </div>
+
+</section>
   )
 }

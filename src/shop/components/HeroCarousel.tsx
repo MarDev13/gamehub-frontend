@@ -20,9 +20,9 @@ export default function HeroCarousel() {
       >
         <CarouselContent>
           <CarouselItem>
-            {/* CONTENEDOR HERO */}
+           
             <div className="py-10 px-4 flex justify-center">
-              {/* MARCO TIPO CONSOLA */}
+            
               <div
                 className="
                   w-full max-w-6xl
@@ -33,7 +33,7 @@ export default function HeroCarousel() {
                   p-3
                 "
               >
-                {/* “PANTALLA” */}
+              
                 <div
                   className="
                     bg-black

@@ -1,6 +1,5 @@
 const TOKEN_KEY = 'snap_token'
 
-
 export const saveToken = (token: string): void => {
     localStorage.setItem(TOKEN_KEY, token)
 }

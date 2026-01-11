@@ -64,7 +64,7 @@ export default function AppRouter() {
         </Route>
       </Route>
 
-      {/* USER / ACCOUNT */}
+     
       <Route element={<ProtectedRoute requiredRole="USER" />}>
         <Route path="/account" element={<UserLayout />}>
           <Route index element={<Profile />} />
@@ -72,7 +72,7 @@ export default function AppRouter() {
         </Route>
       </Route>
 
-      {/* SHOP */}
+     
       <Route path="/shop" element={<ShopLayout />}>
         <Route index element={<ShopHomePage />} />
         <Route path="games/:id" element={<GameDetailPage />} />
@@ -80,7 +80,7 @@ export default function AppRouter() {
         <Route path="order-success" element={<CheckoutSuccessPage />} />
       </Route>
 
-      {/* FALLBACK */}
+     
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   )

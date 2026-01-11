@@ -70,39 +70,32 @@ export function CoinRain({
           rect.right > cardRect.left &&
           rect.left < cardRect.right
 
-        // ==========================
-        // ATERRIZA EN LA CARD
-        // ==========================
+      
         if (isOverCard && coin.vy >= 0) {
           coin.onPlatform = true
 
-          // se coloca justo encima
+       
           coin.y = cardRect.top - coin.size
 
-          // se desliza, no cae
+        
           coin.vy = 0
 
-          // empuje lateral coherente
+      
           const cardCenter = cardRect.left + cardRect.width / 2
           const coinCenter = rect.left + rect.width / 2
           coin.vx = coinCenter < cardCenter ? -1.2 : 1.2
         }
 
-        // ==========================
-        // SALE DE LA CARD → VUELVE A CAER
-        // ==========================
+     
         if (
           coin.onPlatform &&
           (rect.right < cardRect.left ||
             rect.left > cardRect.right)
         ) {
           coin.onPlatform = false
-          coin.vy = 0.5 // empieza a caer suavemente
+          coin.vy = 0.5 
         }
 
-        // ==========================
-        // RESET
-        // ==========================
         if (coin.y > window.innerHeight + 120) {
           coin.y = -100
           coin.x = Math.random() * window.innerWidth

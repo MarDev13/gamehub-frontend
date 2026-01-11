@@ -8,11 +8,11 @@ export default function ShopHomePage() {
   const [activePlatform, setActivePlatform] = useState<string | null>(null)
   return (
     <>
-    
-    <div className="space-y-16">
-      <HeroCarousel />
 
-     <h1 className="
+      <div className="space-y-16">
+        <HeroCarousel />
+
+        <h1 className="
   font-pixel
   text-3xl sm:text-4xl
   font-extrabold
@@ -20,17 +20,17 @@ export default function ShopHomePage() {
   text-center
   drop-shadow-[0_2px_0_#000]
 ">
-  Los clásicos nunca mueren
-</h1>
+          Los clásicos nunca mueren
+        </h1>
 
 
-      <PlatformFilter activePlatform={activePlatform}
-        onChange={setActivePlatform} />
+        <PlatformFilter activePlatform={activePlatform}
+          onChange={setActivePlatform} />
 
-      <GameGrid activePlatform={activePlatform} />
+        <GameGrid activePlatform={activePlatform} />
 
-      <DiscountBlock />
-    </div>
+        <DiscountBlock />
+      </div>
     </>
   )
 }

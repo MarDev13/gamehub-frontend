@@ -30,7 +30,6 @@ export default function ShopHeader() {
 >
   <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
 
-    {/* LOGO */}
     <Link
       to="/shop"
       className="
@@ -54,10 +53,8 @@ export default function ShopHeader() {
       </span>
     </Link>
 
-    {/* ACTIONS */}
     <div className="flex items-center gap-3 relative">
 
-      {/* 🛒 CART */}
       <button
         onClick={toggleCart}
         className="
@@ -94,7 +91,6 @@ export default function ShopHeader() {
         )}
       </button>
 
-      {/* 👤 USER */}
       <div className="relative">
         <button
           onClick={() => setOpen(o => !o)}

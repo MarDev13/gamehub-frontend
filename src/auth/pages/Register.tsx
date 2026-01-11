@@ -65,7 +65,7 @@ setTimeout(() => {
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-gradient-to-b from-[#F7EED9] to-[#EADDBB] overflow-hidden">
 
-      {/* 🪙 Monedas flotando (mismo fondo que login) */}
+     
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img
           src="/img/moneda-retro.png"
@@ -101,7 +101,6 @@ setTimeout(() => {
         />
       </div>
 
-      {/* 🎮 CARD REGISTRO */}
       <Card className="relative z-10 w-full max-w-md border-2 border-[#C8A96A] bg-[#EFE4C6] shadow-[4px_4px_0px_#D6B87A]">
 
         <CardHeader className="text-center">

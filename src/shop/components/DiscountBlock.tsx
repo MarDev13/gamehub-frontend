@@ -97,7 +97,7 @@ export default function DiscountBlock() {
 
   return (
     <section className="space-y-4">
-        <h3 className="
+      <h3 className="
         font-pixel
         text-2xl
         font-bold

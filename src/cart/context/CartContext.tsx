@@ -29,13 +29,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  /* 🔁 REHIDRATAR DESDE LOCALSTORAGE */
+ 
   useEffect(() => {
     const stored = localStorage.getItem("cart")
     if (stored) setItems(JSON.parse(stored))
   }, [])
 
-  /* 💾 PERSISTIR */
+ 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(items))
   }, [items])
