@@ -4,10 +4,9 @@ type Props = {
 }
 
 const PLATFORMS = [
-  "Neo Geo",
+  
   "Game Boy Advance",
-  "Genesis",
-  "Nintendo 64",
+  
   "Playstation",
   "PC",
   "macOS",
